@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'groovy'
+	id 'java'
+	id 'eclipse'
+	id 'maven'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.bootcamp.learnwell.quiz'
+version = '0.0.1-SNAPSHOT'
+jar {
+	baseName = 'contract-rest-client'
+}
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven {url "http://repo.spring.io/snapshot"}
+}
+
+ext {
+	set('springCloudVersion', "Greenwich.SR1")
+}
+
+dependencies {
+	
+	implementation 'org.mockito:mockito-scala-scalaz_2.12:1.5.11'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+	testCompile "org.springframework.cloud:spring-cloud-starter-contract-stub-runner"
+	testCompile "org.springframework.cloud:spring-cloud-starter-contract-verifier"
+	
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
