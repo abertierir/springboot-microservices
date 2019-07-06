@@ -1,4 +1,4 @@
-package com.bootcamp.learnwell.contracts
+package contracts
 
 org.springframework.cloud.contract.spec.Contract.make {
 	request {
@@ -6,7 +6,7 @@ org.springframework.cloud.contract.spec.Contract.make {
 		url '/student/{id}'
 		headers { 
 			contentType('application/json')
-			role('cliente')
+			header("role","client")
 		}
 	}
 	response { 

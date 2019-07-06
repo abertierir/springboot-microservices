@@ -14,6 +14,7 @@ public class StudentDto {
     @NotEmpty
     private String userName;
 	
+	@NotNull
 	@ValidEmail
     @NotEmpty
     private String email;

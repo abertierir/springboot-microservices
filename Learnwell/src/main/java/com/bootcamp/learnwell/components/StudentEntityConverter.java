@@ -15,6 +15,7 @@ public class StudentEntityConverter implements IEntityConverter{
 	public StudentEntityConverter(){}
 	
 	public Student dataToEntity(StudentDto studentDto) {
+		if(studentDto==null) {return null;}
 		Student student = new Student();    
 		student.setUserName(studentDto.getUserName());
 		student.setEmail(studentDto.getEmail());
@@ -22,30 +23,13 @@ public class StudentEntityConverter implements IEntityConverter{
         return student;
 	}
 
-	public StudentDto entityToData(Student findByIdStudent) {
-		return null;
+	public StudentDto entityToData(Student student) {
+		if(student==null) {return null;}
+		StudentDto studentDto = new StudentDto();    
+		studentDto.setUserName(student.getUserName());
+		studentDto.setEmail(student.getEmail());
+		studentDto.setPassword(student.getPassword());
+        return studentDto;
 	}
 	
-	//@Autowired
-		// private BCryptPasswordEncoder bCryptPasswordEncoder;
-		/*
-		//Evaluar la posibilidad de implementar un patron de execution
-		public void manageSignUpRequest(StudentDto studentDto){
-			if (Authenticator.emailExists(studentDto.getEmail())) {
-				successfulSignUp=false;
-			}else {
-				accountRepository.save(dtoToEntity(studentDto));
-				successfulSignUp=true;
-			}
-		}
-		
-		private Student dtoToEntity(StudentDto studentDto) {
-			Student student = new Student();
-			BeanUtils.copyProperties(studentDto, student);
-			//student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
-			return student;
-		}
-
-		*/
-
 }

@@ -21,10 +21,12 @@ public class SignUpController {
 	@Autowired
 	ISignUpService signUpService;
 	
-	@PostMapping(path="/",  produces = {MediaType.APPLICATION_JSON_VALUE} )
-	public ResponseEntity <?> createNewStudent(@RequestBody @Valid StudentDto studentDto) {
-		return signUpService.processNewUser(studentDto)? new ResponseEntity<>(HttpStatus.CREATED):
-			new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	@PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE} )
+	public ResponseEntity <String> createNewStudent(@RequestBody @Valid StudentDto studentDto) {
+		String idStudent =signUpService.processNewUser(studentDto);
+		return idStudent!=null? 
+				new ResponseEntity<String>(HttpStatus.CREATED):
+					new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 }

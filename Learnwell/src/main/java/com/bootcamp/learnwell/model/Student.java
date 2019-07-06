@@ -21,7 +21,7 @@ public class Student {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
-	private String idStudent;
+	private String studentId;
 	
 	@Column(nullable = false)
 	private String userName;

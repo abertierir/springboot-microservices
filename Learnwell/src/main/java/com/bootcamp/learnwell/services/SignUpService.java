@@ -1,16 +1,15 @@
 package com.bootcamp.learnwell.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.learnwell.components.IEntityConverter;
 import com.bootcamp.learnwell.components.IUserValidator;
 import com.bootcamp.learnwell.dto.StudentDto;
+import com.bootcamp.learnwell.model.Student;
 import com.bootcamp.learnwell.repository.IAccountRepository;
 
 @Service
-@Configurable
 public class SignUpService implements ISignUpService{
 	
 	@Autowired
@@ -19,13 +18,18 @@ public class SignUpService implements ISignUpService{
 	@Autowired
 	private IEntityConverter studentEntityConverter;
 	
-	@Autowired
+	
 	private IAccountRepository studentRepository;
+
+    public SignUpService (IAccountRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 	
 	@Override
-	public boolean processNewUser(StudentDto studentDto) {
-		return studentValidator.emailAlreadyExists(studentDto.getEmail())? false:
-			(studentRepository.save(studentEntityConverter.dataToEntity(studentDto))!=null)?true:false;
+	public String processNewUser(StudentDto studentDto) {
+		//if(studentValidator.emailAlreadyExists(studentDto.getEmail())) {return null;}
+		Student student=studentEntityConverter.dataToEntity(studentDto);
+		return (studentRepository.save(student)!=null)?student.getStudentId():"not save the user";
 	}
 
 }

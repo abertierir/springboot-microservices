@@ -1,7 +1,9 @@
 package com.bootcamp.learnwell.services;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+
+import static org.hamcrest.CoreMatchers.any;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +28,7 @@ public class SignUpServiceTest {
 		studentDto.setEmail("Pablito@gmail.com");
 		studentDto.setPassword("sdfasdf");
 		//when-then
-		assertTrue(signUpService.processNewUser(studentDto));
+		assertThat(signUpService.processNewUser(studentDto),any(String.class));
 	}
 
 	@Test
@@ -37,7 +39,7 @@ public class SignUpServiceTest {
 		studentDto.setEmail("Pablito@gmail.com");
 		studentDto.setPassword("sdfasdf");
 		//when-then
-		assertFalse(signUpService.processNewUser(studentDto));
+		assertThat(signUpService.processNewUser(studentDto),null);
 	}
 
 }

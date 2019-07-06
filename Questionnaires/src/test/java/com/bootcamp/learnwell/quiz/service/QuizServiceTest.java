@@ -25,7 +25,7 @@ public class QuizServiceTest {
 	
 	@Rule
 	public StubRunnerRule stubRunnerRule = new StubRunnerRule()
-		.downloadStub("com.bootcamp.learnwell.quiz.service", "contract-rest-service", "0.0.1-SNAPSHOT", "stubs")
+		.downloadStub("com.bootcamp.learnwell.quiz", "quiz", "0.0.1-SNAPSHOT", "stubs")
 		.withPort(8100)
 		.stubsMode(StubRunnerProperties.StubsMode.LOCAL);
 	
