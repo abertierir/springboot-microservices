@@ -18,18 +18,14 @@ public class SignUpService implements ISignUpService{
 	@Autowired
 	private IEntityConverter studentEntityConverter;
 	
-	
+	@Autowired
 	private IAccountRepository studentRepository;
-
-    public SignUpService (IAccountRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 	
 	@Override
-	public String processNewUser(StudentDto studentDto) {
-		//if(studentValidator.emailAlreadyExists(studentDto.getEmail())) {return null;}
+	public String registerNewUser(StudentDto studentDto) {
+		if(studentValidator.emailAlreadyExists(studentDto.getEmail())) {return null;}
 		Student student=studentEntityConverter.dataToEntity(studentDto);
-		return (studentRepository.save(student)!=null)?student.getStudentId():"not save the user";
+		return (studentRepository.save(student)!=null)?student.getStudentId():null;
 	}
 
 }

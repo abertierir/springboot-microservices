@@ -23,7 +23,7 @@ public class SignUpController {
 	
 	@PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE} )
 	public ResponseEntity <String> createNewStudent(@RequestBody @Valid StudentDto studentDto) {
-		String idStudent =signUpService.processNewUser(studentDto);
+		String idStudent =signUpService.registerNewUser(studentDto);
 		return idStudent!=null? 
 				new ResponseEntity<String>(HttpStatus.CREATED):
 					new ResponseEntity<>(HttpStatus.BAD_REQUEST);

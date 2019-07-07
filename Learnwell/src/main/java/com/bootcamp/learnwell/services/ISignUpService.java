@@ -3,5 +3,5 @@ package com.bootcamp.learnwell.services;
 import com.bootcamp.learnwell.dto.StudentDto;
 
 public interface ISignUpService {
-	String processNewUser(StudentDto studentDto);
+	String registerNewUser(StudentDto studentDto);
 }

@@ -36,4 +36,19 @@ public class SignUpControllerTest {
     	//then
     	.andExpect(status().isCreated());
     }
+    
+    @Test
+    public void a_registered_user_is_trying_to_sign_up_again() throws Exception{
+    	//given
+    	JSONObject json = new JSONObject(); 
+    	json.put("userName", "Julie Sherman"); 
+    	json.put("email", "you2@giveme.something"); 
+    	json.put("password", "somethingthatnobodyelsecangive"); 
+    	//when
+    	mvc.perform(post("/student")
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(json.toString()))
+    	//then
+    	.andExpect(status().is4xxClientError());
+    }
 }
